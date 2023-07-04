@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 
 public class KeyboardInputs implements KeyListener {
     private GamePanel gamePanel;
+    private final int UP = 1, DOWN = 2, LEFT = 3, RIGHT = 4;
+    private final int movingSpeed = 10;
     public KeyboardInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -19,26 +21,45 @@ public class KeyboardInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                System.out.println("It's w");
                 gamePanel.changeY(-5);
                 break;
             case KeyEvent.VK_S:
-                System.out.println("It's s");
                 gamePanel.changeY(5);
                 break;
             case KeyEvent.VK_A:
                 gamePanel.changeX(-5);
-                System.out.println("It's a");
+                gamePanel.updateAction(2);
+                gamePanel.setPlayerDirection(LEFT);
                 break;
             case KeyEvent.VK_D:
                 gamePanel.changeX(5);
-                System.out.println("It's d");
+                gamePanel.updateAction(2);
+                gamePanel.setPlayerDirection(RIGHT);
                 break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                System.out.println("It's w");
+                gamePanel.changeY(-movingSpeed);
+                break;
+            case KeyEvent.VK_S:
+                System.out.println("It's s");
+                gamePanel.changeY(movingSpeed);
+                break;
+            case KeyEvent.VK_A:
+                gamePanel.changeX(-movingSpeed);
+                gamePanel.updateAction(1);
+                System.out.println("It's a");
+                break;
+            case KeyEvent.VK_D:
+                gamePanel.changeX(movingSpeed);
+                gamePanel.updateAction(1);
+                System.out.println("It's d");
+                break;
+        }
     }
 }

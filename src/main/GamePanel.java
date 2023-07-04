@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,14 @@ public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private float x = 50, y = 50;
     private AnimationHandler animationHandler;
+    private int playerAction, playerDirection;
+
+    public void setPlayerDirection(int playerDirection) {
+        if (this.playerDirection!= playerDirection) {
+            animationHandler.rotatePlayer();
+        }
+        this.playerDirection = playerDirection;
+    }
 
     public GamePanel() {
         animationHandler = new AnimationHandler();
@@ -36,15 +45,15 @@ public class GamePanel extends JPanel {
     public void changeY(int value) {
         y += value;
     }
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void updateAction(int action) {
+        playerAction = action;
 
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         animationHandler.updateAnimationTick();
-        g.drawImage(animationHandler.getIdle(), (int)x, (int)y, null);
+        BufferedImage img = animationHandler.animate(playerAction);
+        g.drawImage(img, (int)x, (int)y, 240, 160,null);
     }
 
 
@@ -52,6 +61,7 @@ public class GamePanel extends JPanel {
     @Override
     protected void processComponentKeyEvent(KeyEvent e) {
         super.processComponentKeyEvent(e);
+
         //  System.out.println("repaint");
     }
 }
