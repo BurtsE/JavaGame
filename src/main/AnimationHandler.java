@@ -32,9 +32,7 @@ public class AnimationHandler {
             BufferedImage image = idleAnimation[i];
             int width = image.getWidth();
             int height = image.getHeight();
-            //BufferedImage for mirror image
             BufferedImage res = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            //create mirror image pixel by pixel
             for(int y = 0; y < height; y++){
                 for(int lx = 0, rx = width - 1; lx < width; lx++, rx--){
                     int p = image.getRGB(lx, y);

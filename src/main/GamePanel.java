@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private float x = 50, y = 50;
     private AnimationHandler animationHandler;
-    private int playerAction, playerDirection;
+    private int playerAction, playerDirection = 4;
 
     public void setPlayerDirection(int playerDirection) {
         if (this.playerDirection!= playerDirection) {
