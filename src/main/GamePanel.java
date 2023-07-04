@@ -3,14 +3,10 @@ package main;
 import inputs.KeyboardInputs;
 import inputs.MouseInputs;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
@@ -51,9 +47,11 @@ public class GamePanel extends JPanel {
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        animationHandler.updateAnimationTick();
         BufferedImage img = animationHandler.animate(playerAction);
         g.drawImage(img, (int)x, (int)y, 240, 160,null);
+    }
+        public void updateGame() {
+        animationHandler.updateAnimationTick();
     }
 
 
@@ -61,7 +59,5 @@ public class GamePanel extends JPanel {
     @Override
     protected void processComponentKeyEvent(KeyEvent e) {
         super.processComponentKeyEvent(e);
-
-        //  System.out.println("repaint");
     }
 }

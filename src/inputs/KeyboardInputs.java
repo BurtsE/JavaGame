@@ -43,11 +43,9 @@ public class KeyboardInputs implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                System.out.println("It's w");
                 gamePanel.changeY(-movingSpeed);
                 break;
             case KeyEvent.VK_S:
-                System.out.println("It's s");
                 gamePanel.changeY(movingSpeed);
                 break;
             case KeyEvent.VK_A:
